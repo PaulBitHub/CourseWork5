@@ -30,7 +30,7 @@ def show_interfaсe():
         print(f"Список всех компаний и количество вакансий у каждой компании: {companies_and_vacancies_count}\n")
     elif user_answer == "2":
         all_vacancies = db_manager.get_all_vacancies()
-        print(f"Cписок всех вакансий с указанием названия компании, названия вакансии и зарплаты и ссылки на вакансию: {all_vacancies}\n")
+        print(f"Список всех вакансий с указанием названия компании, названия вакансии и зарплаты и ссылки на вакансию: {all_vacancies}\n")
     elif user_answer == "3":
         avg_salary = db_manager.get_avg_salary()
         print(f"Средняя зарплата по вакансиям: {avg_salary}\n")

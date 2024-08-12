@@ -2,6 +2,7 @@ import psycopg2
 
 
 class DBManager:
+    """Класс для работы с базой данных PostgreSQL"""
     def __init__(self, database_name, params):
         self.dbname = database_name
         self.conn = psycopg2.connect(dbname=database_name, **params)
