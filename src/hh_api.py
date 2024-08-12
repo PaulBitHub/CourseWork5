@@ -55,7 +55,8 @@ def get_vacancy_list(data: list) -> list[dict]:
         company_id = item["employer"]["id"]
         company_url = item["employer"]["url"]
         job_title = item["name"]
-        link_to_vacancy = item["employer"]["alternate_url"]
+        # link_to_vacancy = item["employer"]["alternate_url"]
+        link_to_vacancy = item["alternate_url"]
         salary = item["salary"]
         salary_from = 0
         currency = " "
