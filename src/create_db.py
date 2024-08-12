@@ -46,7 +46,7 @@ def create_data_base(database_name, params) -> None:
 
 def save_data_to_db(data, database_name, params) -> None:
     """
-    Заполнение таблиц данными
+    Заполнение таблиц companies и vacancies данными
     """
     insert_q = """
         INSERT INTO vacancies (company_name, job_title, link_to_vacancy, salary_from, currency, experience, description,

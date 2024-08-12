@@ -7,7 +7,7 @@ class DBManager:
         self.conn = psycopg2.connect(dbname=database_name, **params)
         self.cur = self.conn.cursor()
 
-    def get_companies_and_vacancies_count(self) -> list:
+    def get_companies_and_vacancies_count(self) -> dict:
         """
         Получает список всех компаний и количество вакансий у каждой компании
         """
@@ -56,6 +56,3 @@ class DBManager:
                 WHERE LOWER(job_title) LIKE %s"""
         self.cur.execute(q, ('%' + keyword.lower() + '%',))
         return self.cur.fetchall()
-
-
-
