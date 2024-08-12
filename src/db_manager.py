@@ -23,9 +23,11 @@ class DBManager:
     def get_companies_and_vacancies_count(self) -> dict:
         """Получает список всех компаний и количество вакансий у каждой компании"""
         query = """
-        SELECT company_name, COUNT(*) 
-        FROM vacancies
-        GROUP BY company_name
+        SELECT companies.company_name, COUNT(vacancies.company_id)
+        FROM companies
+        JOIN vacancies USING (company_id)
+        GROUP BY companies.company_name
+        ORDER BY COUNT DESC
         """
         rows = self.execute_query(query)
         return {row[0]: row[1] for row in rows}
@@ -61,5 +63,5 @@ class DBManager:
         Получает список всех вакансий, в названии которых содержатся
         переданные в метод слова, например 'python'
         """
-        query = """SELECT * FROM vacancies WHERE LOWER(job_title) LIKE %s"""
+        query = """SELECT company_name, job_title, salary_from, experience, requirement FROM vacancies WHERE LOWER(job_title) LIKE %s"""
         return self.execute_query(query, ('%' + keyword.lower() + '%',))

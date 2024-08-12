@@ -26,23 +26,28 @@ def show_interfaсe():
           f"5 - Список всех вакансий, в названии которых содержатся запрашиваемое слово\n")
     user_answer = input("Введите номер запроса\n")
     if user_answer == "1":
-        companies_and_vacancies_count = db_manager.get_companies_and_vacancies_count()
-        print(f"Список всех компаний и количество вакансий у каждой компании: {companies_and_vacancies_count}\n")
+        print(f"Список всех компаний и количество вакансий у каждой компании:")
+        for key, item in db_manager.get_companies_and_vacancies_count().items():
+            print(f"{key} - {item} вакансий")
     elif user_answer == "2":
         all_vacancies = db_manager.get_all_vacancies()
         print(f"Список всех вакансий с указанием названия компании, названия вакансии и зарплаты и ссылки на вакансию: {all_vacancies}\n")
     elif user_answer == "3":
         avg_salary = db_manager.get_avg_salary()
-        print(f"Средняя зарплата по вакансиям: {avg_salary}\n")
+        print(f"Средняя зарплата по вакансиям:\n")
+        for item in avg_salary:
+            for salary in item:
+                print(f"{salary:.2f}")
     elif user_answer == "4":
         vacancies_with_higher_salary = db_manager.get_vacancies_with_higher_salary()
         print(f"Список всех вакансий, у которых зарплата выше средней по всем вакансиям: {vacancies_with_higher_salary}\n")
+        for vac in vacancies_with_higher_salary:
+            print(f"{vac[0]} - {vac[1]}")
     elif user_answer == "5":
         user_input = input(f'Введите слово: ')
         vacancies_with_keyword = db_manager.get_vacancies_with_keyword(user_input)
-        print(f"Список всех вакансий, в названии которых содержатся запрашиваемое слово: {vacancies_with_keyword}")
+        print(f"Список всех вакансий, в названии которых содержатся запрашиваемое слово:\n")
+        for vac in vacancies_with_keyword:
+            print(f"{', '.join(str(x) for x in vac)}")
     else:
         print("Введен неверный запрос")
-
-
-# show_interfaсe()
