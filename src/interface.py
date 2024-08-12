@@ -45,4 +45,4 @@ def show_interfaсe():
         print("Введен неверный запрос")
 
 
-show_interfaсe()
+# show_interfaсe()
