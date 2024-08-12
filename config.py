@@ -2,15 +2,9 @@ import os
 from configparser import ConfigParser
 
 
-def config(filename="database.ini", section="postgresql"):
-    # Create a parser
+def config(filename="../database.ini", section="postgresql"):
     parser = ConfigParser()
-    # Get the absolute path to the current directory
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    # Join the path to the config file
-    config_path = os.path.join(current_dir, filename)
-    # Read config file
-    parser.read(config_path)
+    parser.read(filename)
     db = {}
     if parser.has_section(section):
         params = parser.items(section)
