@@ -13,7 +13,7 @@ create_data_base("top_vacancies", params)
 conn = psycopg2.connect(dbname="top_vacancies", **params)
 save_data_to_db(vacancies, "top_vacancies", params)
 
-def show_interfaсe():
+def show_interfaсe() -> None:
     """
     Функция для взаимодействия с пользователем
     """
