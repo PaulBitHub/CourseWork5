@@ -4,18 +4,18 @@ import psycopg2
 class DBManager:
     """Класс для работы с базой данных PostgreSQL"""
 
-    def __init__(self, database_name, params):
+    def __init__(self, database_name, params) -> None:
         """При создании - параметры для всех объектов класса"""
         self.dbname = database_name
         self.conn = psycopg2.connect(dbname=database_name, **params)
         self.cur = self.conn.cursor()
 
-    def execute_query(self, query, params=None):
+    def execute_query(self, query, params=None) -> list:
         """Универсальный метод для выполнения запроса и получения результатов"""
         self.cur.execute(query, params)
         return self.cur.fetchall()
 
-    def close(self):
+    def close(self) -> None:
         """Закрытие соединения с базой данных"""
         self.cur.close()
         self.conn.close()
@@ -43,7 +43,7 @@ class DBManager:
         """
         return self.execute_query(query)
 
-    def get_avg_salary(self):
+    def get_avg_salary(self) -> list | None:
         """Возвращает среднюю зарплату по вакансиям из БД"""
         query = "SELECT AVG(salary_from) FROM vacancies"
         rows = self.execute_query(query)
